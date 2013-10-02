@@ -17,6 +17,14 @@
         $span.text(value + '% Complete');
     }
 
+    Progressbar.prototype.finish = function () {
+        this.update(100);
+    }
+
+    Progressbar.prototype.reset = function () {
+        this.update(0);
+    }
+
     // PROGRESSBAR PLUGIN DEFINITION
     // =============================
 
@@ -26,6 +34,7 @@
                 data = $this.data('jbl.progressbar');
 
             if (!data) $this.data('jbl.progressbar', (data = new Progressbar(this)));
+            if (typeof option == 'string') data[option]();
             if (typeof option == 'number') data.update(option);
         })
     };
